@@ -5,7 +5,14 @@ class BooksController < ApplicationController
   def index
     uri = URI('https://sfof9o2xn8.execute-api.us-east-1.amazonaws.com/books')
     res = Net::HTTP.get_response(uri)
-    @books = JSON.parse(res.body, symbolize_names: true)[:body] if res.is_a?(Net::HTTPSuccess)
-    render json: @books
+    books_data = JSON.parse(res.body, symbolize_names: true)[:body] if res.is_a?(Net::HTTPSuccess)
+
+    books_data.each do |book_data|
+      book = Book.find_or_create_by(isbn: book_data[:isbn])
+      book.update(title: book_data[:title], author: book_data[:author], publication_date: book_data[:year])
+    end
+
+    @books = Book.all
   end
 end
+
