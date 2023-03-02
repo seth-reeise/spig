@@ -5,7 +5,7 @@
   <div class="flex items-center">
     <label class="mr-2 font-medium">Search by Title:</label>
     <input type="text" name="title" value="<%= params[:title] %>" class="border rounded py-1 px-2">
-    <button type="submit" class="ml-2 px-4 py-1 rounded text-white bg-indigo-500 hover:bg-indigo-600">Filter</button>
+    <button type="submit" class="ml-2 px-4 py-1 rounded text-white bg-indigo-500 hover:bg-indigo-600">Search</button>
   </div>
 </form>
 
@@ -31,4 +31,6 @@
     </tbody>
   </table>
 </div>
+
+<%= will_paginate @books %>
 <%#= debug @books %>

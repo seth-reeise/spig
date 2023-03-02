@@ -18,6 +18,7 @@ class BooksController < ApplicationController
       @books = @books.where('title LIKE ?', "%#{params[:title]}%")
     end
 
+    @books = @books.paginate(page: params[:page], per_page: 10)
   end
 end
 
