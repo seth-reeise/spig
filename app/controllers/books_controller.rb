@@ -13,6 +13,11 @@ class BooksController < ApplicationController
     end
 
     @books = Book.all
+
+    if params[:title].present?
+      @books = @books.where('title LIKE ?', "%#{params[:title]}%")
+    end
+
   end
 end
 
