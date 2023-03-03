@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .table-spacing {
+        padding: 0 15px 0 15px;
+    }
+}
 /*
 
 @layer components {

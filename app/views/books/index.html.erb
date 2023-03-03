@@ -1,6 +1,5 @@
 <h1 class="text-2xl font-bold mb-4">Books</h1>
 
-<!-- Filter Form -->
 <form action="<%= @books %>" method="GET" class="mb-4">
   <div class="flex items-center">
     <label class="mr-2 font-medium">Search by Title:</label>
@@ -9,28 +8,29 @@
   </div>
 </form>
 
-<div class="overflow-x-auto">
-  <table class="table-auto border-collapse border border-gray-400">
-    <thead>
+<br>
+
+<table>
+
     <tr class="bg-gray-100">
-      <th class="py-2 px-4 border border-gray-400">Title</th>
-      <th class="py-2 px-4 border border-gray-400">Author</th>
-      <th class="py-2 px-4 border border-gray-400">Year</th>
-      <th class="py-2 px-4 border border-gray-400">ISBN</th>
+      <th class="table-spacing">Title</th>
+      <th class="table-spacing">Author</th>
+      <th class="table-spacing">Year</th>
+      <th class="table-spacing">ISBN</th>
     </tr>
-    </thead>
-    <tbody>
+
     <% @books.each do |book| %>
       <tr>
-        <td class="py-2 px-4 border border-gray-400"><%= book.title %></td>
-        <td class="py-2 px-4 border border-gray-400"><%= book.author %></td>
-        <td class="py-2 px-4 border border-gray-400"><%= book.publication_date %></td>
-        <td class="py-2 px-4 border border-gray-400"><%= book.isbn %></td>
+        <td class="table-spacing"><%= book.title %></td>
+        <td class="table-spacing"><%= book.author %></td>
+        <td class="table-spacing"><%= book.year %></td>
+        <td class="table-spacing"><%= book.isbn %></td>
       </tr>
     <% end %>
-    </tbody>
   </table>
-</div>
 
+<br>
 <%= will_paginate @books %>
 <%#= debug @books %>
+
+

@@ -8,8 +8,10 @@ class BooksController < ApplicationController
     books_data = JSON.parse(res.body, symbolize_names: true)[:body] if res.is_a?(Net::HTTPSuccess)
 
     books_data.each do |book_data|
-      book = Book.find_or_create_by(isbn: book_data[:isbn])
-      book.update(title: book_data[:title], author: book_data[:author], publication_date: book_data[:year])
+      isbn = book_data[:isbn].nil? ? "Not Found" : book_data[:isbn]
+      year = book_data[:isbn].nil? ? "X" : book_data[:year]
+      book = Book.find_or_create_by(isbn: isbn)
+      book.update(title: book_data[:title], author: book_data[:author], year: year)
     end
 
     @books = Book.all
